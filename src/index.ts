@@ -1,5 +1,5 @@
 import express, { Express, Request, Response } from 'express';
-import { engine } from 'express-handlebars';
+import cons from "consolidate";
 import { data } from 'currency-codes';
 import dotenv from 'dotenv';
 import { convert } from './utils/currencyConverter';
@@ -26,16 +26,9 @@ const app: Express = express();
 const port = process.env.PORT || 3000;
 
 //Sets our app to use the handlebars engine
+app.engine('hbs', cons.handlebars);
 app.set('view engine', 'hbs');
 app.set('views', __dirname +'/views');
-app.engine('hbs', 
-    engine({ 
-        extname: 'hbs', 
-        partialsDir: __dirname + '/views/partials/',
-        layoutsDir: __dirname + '/views/layouts',
-        defaultLayout: 'index'
-    })
-);
 
 // Clear Handlebars cache on server start
 
@@ -47,9 +40,10 @@ app.use(express.static('public'));
 app.get('/', (req: Request, res: Response) => {
 
   // Get currency codes
-  res.render('main', 
+  res.render('mainRender', 
     { 
-      currencies: data.sort((a, b)=> a.currency.localeCompare(b.currency)) 
+      layout: 'index',
+      currencies: data.sort((a, b)=> a.currency.localeCompare(b.currency))
     }
   );
 });
@@ -60,7 +54,8 @@ app.post('/', async (req, res) => {
   console.log(req.body); // Debug
 
   convert(req.body).subscribe((outputAmount)=>{
-    res.render('main', {
+    res.render('mainRender', {
+      layout: 'index',
       output: outputAmount.toFixed(2),
       currencies: data.sort((a, b)=> a.currency.localeCompare(b.currency)),
       input: req.body.inputAmount,
