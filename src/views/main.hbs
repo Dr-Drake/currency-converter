@@ -1,0 +1,38 @@
+<div class="container py-5">
+    <h2 class="text-center mb-4">Currency Converter</h2>
+    <form method="POST" id="my-form" validate>
+
+        {{!-- From Currency --}}
+        <div class="form-group form-group d-flex align-items-center mb-3">
+            <label for="input-group" class="fs-5 w-25 text-center">Input</label>
+            <div class="input-group w-75">
+                <input type="text" class="form-control flex-grow-1" placeholder="Enter value" value="{{ input }}" name="inputAmount" id="inputAmount" required>
+                <select class="form-select autocomplete-select" name="fromCurrency" id="fromCurrency" required>
+                    <option value="">Select a currency</option>
+                    {{#each currencies}}
+                        <option value={{ this.code }}  {{#if (eq this.code ../from)}}selected{{/if}}>{{ this.currency }}</option>
+                    {{/each}}
+                </select>
+            </div>
+        </div>
+
+        {{!-- To Currency --}}
+        <div class="form-group form-group d-flex align-items-center">
+            <label for="input-group" class="fs-5 w-25 text-center">Output</label>
+            <div class="input-group w-75">
+                <input disabled type="text" class="form-control flex-grow-1" placeholder="Enter value" value="{{ output }}" name="outputAmount" id="outputAmount">
+                <select class="form-select autocomplete-select" name="toCurrency" id="toCurrency" required>
+                    <option value="">Select a currency</option>
+                    {{#each currencies}}
+                        <option value={{ this.code }}  {{#if (eq this.code ../to)}}selected{{/if}}>{{ this.currency }}</option>
+                    {{/each}}
+                </select>
+            </div>
+        </div>
+        
+        {{!-- Submit Button --}}
+        <div class="d-flex justify-content-center py-5">
+            <button type="submit" class="btn btn-primary">Convert</button>
+        </div>
+    </form>
+</div>
