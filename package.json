@@ -10,7 +10,7 @@
     "watch": "nodemon"
   },
   "keywords": [],
-  "author": "",
+  "author": "Ikem Ezechukwu",
   "license": "ISC",
   "devDependencies": {
     "@types/express": "^4.17.17",
