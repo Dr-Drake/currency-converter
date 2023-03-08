@@ -1,5 +1,5 @@
 ## Getting Started
-Before you run the project, make sure you have an api key from [exchangeratesapi.io](ihttps://exchangeratesapi.io/).
+Before you run the project, make sure you have an api key from [exchangeratesapi.io](https://exchangeratesapi.io).
 
 Create a .env file, then add your api key to the API_KEY variable.
 
