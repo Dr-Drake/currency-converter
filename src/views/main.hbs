@@ -20,7 +20,7 @@
         <div class="form-group form-group d-flex align-items-center">
             <label for="input-group" class="fs-5 w-25 text-center">Output</label>
             <div class="input-group w-75">
-                <input disabled type="text" class="form-control flex-grow-1" placeholder="Enter value" value="{{ output }}" name="outputAmount" id="outputAmount">
+                <input disabled type="text" class="form-control flex-grow-1" value="{{ output }}" name="outputAmount" id="outputAmount">
                 <select class="form-select autocomplete-select" name="toCurrency" id="toCurrency" required>
                     <option value="">Select a currency</option>
                     {{#each currencies}}
